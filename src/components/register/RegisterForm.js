@@ -4,7 +4,7 @@ import { useForm } from '../../application'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { TextFieldComponent } from '../shared'
-
+import { authenticateUser } from '../../redux'
 const generateRegisterFormValues = () =>{
     return{
         firstName:{
@@ -50,8 +50,25 @@ export const RegisterForm = () => {
 console.log("formValues",formValues)
 const dispatch = useDispatch()
 const navigate = useNavigate()
-const onRegister =(e)=>{}
-return <FormControl fullWidth>
+const onRegister =(e)=>{
+    e.preventDefault()
+    const firstName=formValues.firstName.value
+    const lastName=formValues.lastName.value
+    const email=formValues.email.value
+    const password=formValues.password.value
+dispatch(authenticateUser(
+    {
+        formValues: {firstName,lastName,email,password},
+        isLogin:false
+    }
+   ))
+ .unwrap()
+ .then(()=>navigate("/"))
+ console.log("firstName",firstName,"lastName",lastName,"email",email,"password",password)
+ console.log("dispatch",dispatch)
+
+}
+return <FormControl fullWidth >
     <TextFieldComponent
     name="firstName"
     label="firstName"
@@ -84,6 +101,7 @@ return <FormControl fullWidth>
     error={!!formValues.password.error}
     helperText={formValues.password.error}
     />
+    <button onClick={onRegister}>Register</button>
 
 
 </FormControl>

@@ -26,7 +26,7 @@ export const useForm = ({defaultFotmValues}) => {
   const clearForm=(obj)=>{
     setFormValues(obj)
   }
-    return (
+    return {
         formValues,
         setFormValues,
         onInputChange,
@@ -34,6 +34,6 @@ export const useForm = ({defaultFotmValues}) => {
         clearForm
 
 
-  )
+    }
 }
 
