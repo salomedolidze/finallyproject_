@@ -5,38 +5,47 @@ import { persistReducer } from "redux-persist";
 import persistStore from "redux-persist/es/persistStore";
 import { useSelector } from "react-redux";
 import { productReducer } from "./slices/productSlice";
+// import { cartReducer } from "./slices/CartSlice";
 // import persistReducer from "redux-persist/es/persistReducer";
 
-const persistConfig ={
-    key:"root",
+const persistConfig = {
+    key: "root",
     storage,
-    whitelist:["user"]
+    whitelist: ["user"]
 }
 
-const rootReduces=combineReducers({
-user:userReducer,
-product:productReducer
+const rootReduces = combineReducers({
+    user: userReducer,
+    product: productReducer,
 })
 
-const  persistedReducer=persistReducer(persistConfig,rootReduces)
+const persistedReducer = persistReducer(persistConfig, rootReduces)
 
-export const store=configureStore({
+export const store = configureStore({
     reducer: persistedReducer,
-    middleware:(getDefaultMiddleware)=>getDefaultMiddleware({
-        serializableCheck:false
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: false
     })
 })
-export const persistor=persistStore(store)
+// export const store = configureStore({
+//     reducer:{
+//         user: userReducer,
+//     product: productReducer,
+//     cart:cartReducer
+//     }
+// })
+
+export const persistor = persistStore(store)
 
 
 //action creator
 
-export {authenticateUser,logoutUser} from "./slices/userSlice"
-export {saveProduct,setSelectedProduct} from "./slices/productSlice"
+export { authenticateUser, logoutUser } from "./slices/userSlice"
+export { saveProduct, setSelectedProduct } from "./slices/productSlice"
 
 //hhoks
 
-export const useUserInfo =()=> useSelector((state)=>state.user.userData
+export const useUserInfo = () => useSelector((state) => state.user.userData
 )
 
-export const useSelectedProduct=()=>useSelector((state)=>state.product.selectedProduct)
+export const useSelectedProduct = () => useSelector((state) => state.product.selectedProduct)

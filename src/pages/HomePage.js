@@ -20,6 +20,8 @@ instance.get("products").then(({data})=>setProduct(data.products))
  navigate(`/products/edit/${product.name}`)
  }
 
+
+
   return (
     <div>{products.map((item)=>{
       return <div key={item._id}>
