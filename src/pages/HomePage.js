@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { instance, isUserAdmin } from '../application'
 import { setSelectedProduct, useUserInfo } from '../redux'
 import {  useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatchgit } from 'react-redux'
 
 export const HomePage = () => {
   const [products,setProduct]=useState([])
