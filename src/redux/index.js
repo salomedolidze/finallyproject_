@@ -27,13 +27,7 @@ export const store = configureStore({
         serializableCheck: false
     })
 })
-// export const store = configureStore({
-//     reducer:{
-//         user: userReducer,
-//     product: productReducer,
-//     cart:cartReducer
-//     }
-// })
+
 
 export const persistor = persistStore(store)
 
@@ -41,11 +35,21 @@ export const persistor = persistStore(store)
 //action creator
 
 export { authenticateUser, logoutUser } from "./slices/userSlice"
-export { saveProduct, setSelectedProduct } from "./slices/productSlice"
+export {
+    //asynk thunks
+     saveProduct,fetchHomePageProducts,
+     //reducer
+     setSelectedProduct }
+ from "./slices/productSlice"
 
 //hhoks
+
+//user hooks
 
 export const useUserInfo = () => useSelector((state) => state.user.userData
 )
 
+//ptoducts hook
 export const useSelectedProduct = () => useSelector((state) => state.product.selectedProduct)
+export const useHomePageProducts=()=>useSelector((state)=>state.product.homePageProducts)
+export const UseCategories=()=>useSelector((state)=>state.product.categories)

@@ -9,7 +9,10 @@ import {UserIcon} from "./UserIcon"
 const StyledAppBar = styled(AppBar)(()=>({
     background:"#fff",
     color:"#103B66",
-    padding:"20px 30px"
+    width:"88%",
+    // width:"calc(100%-255px)",
+    padding:"0 100px 0 30px",
+    display:"flex"
 }))
 
 const StyledToolBar = styled(Toolbar)(()=>({
@@ -20,9 +23,10 @@ const StyledToolBar = styled(Toolbar)(()=>({
 }))
 
 export const Header = () => {
+
   return (
     <Box>
-        <StyledAppBar>
+        <StyledAppBar >
             <StyledToolBar>
             <Link to="/">home</Link>
             <SearchBar/>
