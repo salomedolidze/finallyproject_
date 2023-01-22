@@ -85,25 +85,15 @@ export const ProductCard = ({
   };
 
   return (
-    <Grid
-      item
-      className="CartI"
-     
-    >
-      <Card
-        style={{ padding: "20px", borderRadius: "30px",}}
-      >
+    <Grid item className="CartI">
+      <Card style={{ padding: "20px", borderRadius: "30px" }}>
         <Link
           to={`products/categories/${category}/${name}`}
           state={{ id: _id }}
           replace={true}
           style={{ textDecoration: "none" }}
         >
-          <img
-            src={image}
-            alt={`${category} ${name}`}
-            width="100%"
-          />
+          <img src={image} alt={`${category} ${name}`} width="100%" />
           <StyledCardContent>
             <Typography>{name}</Typography>
             <Typography>Price : &{price}</Typography>

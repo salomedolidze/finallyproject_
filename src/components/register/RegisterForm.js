@@ -5,10 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { TextFieldComponent } from "../shared";
 import { authenticateUser } from "../../redux";
-import { Box, Button,styled } from "@mui/material";
-
-
-
+import { Box, Button, styled } from "@mui/material";
 
 const generateRegisterFormValues = () => {
   return {
@@ -112,7 +109,7 @@ export const RegisterForm = () => {
           error={!!formValues.password.error}
           helperText={formValues.password.error}
         />
-        <Button onClick={onRegister} className="styleformbutton" >
+        <Button onClick={onRegister} className="styleformbutton">
           REGISTER
         </Button>
       </Box>

@@ -1,8 +1,10 @@
-import React from 'react'
-import { CategoruProducts } from '../components/product/CategoryProducts'
+import React from "react";
+import { CategoruProducts } from "../components/product/CategoryProducts";
 
 export const CategoryProductsPage = () => {
   return (
-    <div><CategoruProducts/></div>
-  )
-}
+    <div>
+      <CategoruProducts />
+    </div>
+  );
+};
