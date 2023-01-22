@@ -5,7 +5,7 @@ import { styled,Box} from "@mui/material"
 // import  from '@emotion/styled';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchHomePageProducts } from './redux';
+import { fetchCart, fetchHomePageProducts, useUserInfo } from './redux';
 import { Sidebar } from "./components/sidebar/Sidebar"
 // import { margin } from '@mui/system';
 
@@ -18,15 +18,20 @@ minHeight:"100vh",
 
 }))
 function App() {
+  const userInfo=useUserInfo()
   const dispatch=useDispatch()
   useEffect(()=>{
- dispatch(fetchHomePageProducts())   
+ dispatch(fetchHomePageProducts())
+ if(userInfo){
+  dispatch(fetchCart(userInfo._id))   
+
+ }
   },[])
   return (
     <Box >
    <Sidebar/>
       <Header/>
-      <StyledContentContainer>
+      <StyledContentContainer className='contnrs'>
       <RoutesComponent/>
       </StyledContentContainer>
     </Box>

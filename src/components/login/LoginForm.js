@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { TextFieldComponent } from '../shared'
 import { authenticateUser } from '../../redux'
+import { Box, Button } from "@mui/material";
 
 const generateLoginFormValues = () =>{
     return{
@@ -49,8 +50,8 @@ dispatch(authenticateUser({
 
 }
 return <FormControl fullWidth >
-
-     <TextFieldComponent
+<Box className='formBox'>
+<TextFieldComponent
     name="email"
     label="email"
     value={loginFormValues.email.value}
@@ -66,7 +67,9 @@ return <FormControl fullWidth >
     error={loginFormValues.password.error}
     // helperText={loginFormValues.password.error}
     />
-    <button onClick={onLogin}>Login</button>
+    <Button className='styleformbutton' onClick={onLogin}>Login</Button>
+</Box>
+   
 
 
 </FormControl>

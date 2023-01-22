@@ -1,40 +1,77 @@
-import React from 'react'
-import {AppBar, Box, Toolbar} from "@mui/material"
-import { Link } from 'react-router-dom'
-import styled from '@emotion/styled'
-import SearchBar from './SearchBar'
-import {UserIcon} from "./UserIcon"
+import React, { useState } from "react";
+import { AppBar, Badge, Box, Toolbar, Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import styled from "@emotion/styled";
+import SearchBar from "./SearchBar";
+import { UserIcon } from "./UserIcon";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useCartItems } from "../../redux";
+import { CartDrawer } from "./CartDrawer";
+import { AiFillHome } from "react-icons/ai";
+const StyledAppBar = styled(AppBar)(() => ({
+  background: "#fff",
+  color: "#103B66",
+  width: "88%",
+  width: "calc(100% - 255px)",
+  padding: "0 100px 0 30px",
+  display: "flex",
+}));
 
-
-const StyledAppBar = styled(AppBar)(()=>({
-    background:"#fff",
-    color:"#103B66",
-    width:"88%",
-    // width:"calc(100%-255px)",
-    padding:"0 100px 0 30px",
-    display:"flex"
-}))
-
-const StyledToolBar = styled(Toolbar)(()=>({
-    display:"flex",
-    width:"100%",
-    justifyContent:"space-between"
-
-}))
+const StyledToolBar = styled(Toolbar)(() => ({
+  display: "flex",
+  justifyContent: "space-between",
+}));
+const StyledBadge = styled(Badge)(() => ({
+  "& .MuiBadge-badge": {
+    width: "20px",
+    height: "21px",
+    color: "#fff",
+    backgroundColor: "red",
+    top: "2px",
+    right: "-3px",
+  },
+}));
+const StyledHomeLink = styled(Link)(() => ({
+  textDecoration: "none",
+  color: "black",
+  fontSize: "20px",
+  fontSize: "30px",
+  display: "flex",
+}));
 
 export const Header = () => {
-
+  const cartItem = useCartItems();
+  const cartItemsQuantity = cartItem.reduce(
+    (acc, curr) => acc + curr.quantity,
+    0
+  );
+  const [isCartOpen, setIsCartOpen] = useState(false);
   return (
     <Box>
-        <StyledAppBar >
-            <StyledToolBar>
-            <Link to="/">home</Link>
-            <SearchBar/>
-            <UserIcon/>
-            </StyledToolBar>
-          
-        </StyledAppBar>
-    </Box>
-  )
-}
+      <AppBar className="styleappbar">
+        <StyledToolBar>
+          <StyledHomeLink to="/">
+            <AiFillHome color="blue" />
+            Home
+          </StyledHomeLink>
+          <SearchBar />
+          <Box style={{ display: "flex" }}>
+            <Button onClick={() => setIsCartOpen(true)}>
+              <StyledBadge badgeContent={cartItemsQuantity}>
+                <AiOutlineShoppingCart size={35} />
+              </StyledBadge>
+            </Button>
+            <UserIcon />
+          </Box>
 
+          <CartDrawer
+            isOpen={isCartOpen}
+            onClose={() => {
+              setIsCartOpen(false);
+            }}
+          />
+        </StyledToolBar>
+      </AppBar>
+    </Box>
+  );
+};

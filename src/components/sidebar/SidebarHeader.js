@@ -1,7 +1,10 @@
 import React from 'react'
+import { Box,styled } from '@mui/material'
+  
+
 
 export const SidebarHeader = () => {
   return (
-    <div>SidebarHeader</div>
+    <Box className='categgory'>categories</Box>
   )
 }

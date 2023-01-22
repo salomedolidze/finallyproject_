@@ -55,7 +55,6 @@ const ProductForm = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const onSaveProduct = () => {
-        console.log("dd")
         const name = productFormValues.name.value;
         const description = productFormValues.description.value;
         const category = productFormValues.category.value;
@@ -63,7 +62,7 @@ const ProductForm = () => {
         const price = productFormValues.price.value;
         dispatch(saveProduct({
             product: {
-                name, description, category, brand, price, image, id: selectedProduct._id
+                name, description, category, brand, price, image, id:selectedProduct?._id
             },
             isUpdating: !!selectedProduct
         }))
@@ -75,6 +74,7 @@ const ProductForm = () => {
     useEffect(() => {
         if (selectedProduct) {
             setFormValues(generateAddProdctFormValues(selectedProduct))
+        setImage(selectedProduct.image)
         }
     }, [selectedProduct])
 

@@ -47,7 +47,9 @@ export const UserIcon = () => {
                     </MenuItem>
                     )}
                     {isUserAdmin(userInfo) && <MenuItem>
-                    <Button> add product</Button>
+                    <Button  onClick={() => {
+                            navigate("/products/new")
+                        }}> add product</Button>
                     </MenuItem>}
                     {!userInfo && (<MenuItem><Button onClick={() => {
                         navigate("/login")
