@@ -88,7 +88,7 @@ export const ProductCard = ({
     <Grid item className="CartI">
       <Card style={{ padding: "20px", borderRadius: "30px" }}>
         <Link
-          to={`products/categories/${category}/${name}`}
+          to={`/products/categories/${category}/${name}`}
           state={{ id: _id }}
           replace={true}
           style={{ textDecoration: "none" }}
