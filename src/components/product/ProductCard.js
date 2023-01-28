@@ -79,7 +79,7 @@ export const ProductCard = ({
         productId: _id,
         userId: useInfo?._id,
         url: `${category}${search}`,
-        Rating: e.target.value,
+        rating: e.target.value,
       })
     );
   };
