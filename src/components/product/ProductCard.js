@@ -80,6 +80,7 @@ export const ProductCard = ({
         userId: useInfo?._id,
         url: `${category}${search}`,
         rating: e.target.value,
+        isHome: pathname === "/",
       })
     );
   };
