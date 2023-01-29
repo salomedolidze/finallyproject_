@@ -14,6 +14,9 @@ export const CategoruProducts = () => {
   const { value: sort, changeQueryValue: changeSort } = useQuertParam("sort");
   const CategoruProducts = useCategoryProducts();
   const { categoryName } = useParams();
+  useEffect(()=>{
+changePage("page",1)
+},[sort])
   useEffect(() => {
     dispatch(
       fetchCategoryProducts(`${categoryName}?page=${page}&size=3&sort=${sort}`)
